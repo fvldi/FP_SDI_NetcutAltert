@@ -1,19 +1,24 @@
-from scapy.all import conf, Ether, ARP, srp, sniff
+from scapy.all import * #conf, Ether, ARP, srp, sniff
 from twilio.rest import Client
+from time import sleep, time
 from mac_vendor_lookup import MacLookup
+
+
+account_sid = 'TWILIO_ACCOUNT_SID' 
+auth_token = 'TWILIO_AUTH_TOKEN'
+
+client = Client(account_sid, auth_token)
 
 #twilio
 def intruder():
-    account_sid = 'AC8ed2a1615eaec60e151fe752a5f777dd' 
-    auth_token = '3c228b3d2c51b753c495252937b94f20' 
-    client = Client(account_sid, auth_token)
 
     message = client.messages.create( 
-                                from_='whatsapp:+14155238886',  
-                                body="\U0001F3F9 You were attacked by " + response_mac + " - " + vendor,   
-                                to='whatsapp:+6285107777421' 
+                                body="\U0001F3F9 You were attacked by " + response_mac + " - " + vendor,
+                                from_='whatsapp:+TWILIO_WA_BOT',   
+                                to='whatsapp:+WA_NUMBER' 
                             )
     print("[!] Alert sent!")
+    sleep(10)
 
 #ngambil mac address gateway
 def get_mac(ip):
@@ -41,6 +46,7 @@ def process(packet):
                 vendor = MacLookup().lookup(response_mac.upper())
                 # jika berbeda, berarti telah terjadi netcut
                 if real_mac != response_mac:
+                    print("[!] Detected")
                     intruder()
 
             except IndexError:
