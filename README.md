@@ -4,7 +4,7 @@
     <img src="images/NetcutAlert.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h2 align="center">NetcutAlert</h2>
+  <h3 align="center">NetcutAlert</h3>
   <p align="center">
     Final Project Sistem Deteksi dan Intrusi
     <br>
