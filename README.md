@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/fvldi/FP_SDI_NetcutAltert">
-    <img src="images/NetcutAlert.png" alt="Logo" width="80" height="80">
+    <img src="images/NetcutAlert.png" alt="Logo" width="70" height="70">
   </a>
 
   <h3 align="center">NetcutAlert</h3>
