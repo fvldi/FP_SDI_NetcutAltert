@@ -27,7 +27,8 @@
 2. [Requirement](#Requirement)
 3. [Cara kerja](#Cara-Kerja)
 4. [Instalasi](#Instalasi)
-5. [Dokumentasi](#Dokumentasi)
+5. [Penggunaan](#Penggunaan)
+6. [Dokumentasi](#Dokumentasi)
 
 ## Deskripsi
 
@@ -45,11 +46,46 @@ Masalah jaringan seperti turunnya bandwidth kerap terjadi saat user mengakses in
 | Whatsapp App             | 2.20.206.24       |
 | Android OS               | 10                |
 | Tenda Wireless USB Adpt. | W311Ma            |
-|                          |                   |
 
 ## Cara Kerja
 
+Cara kerja program ini yaitu diawali dengan mengambil default MAC address dari gateway user, lalu distore ke variabel `real_mac`. Kemudian, mendeteksi mac address dari paket yang diterima oleh user, dan distore ke variabel `response_mac`. Setelah itu, program dilanjut dengan membandingkan default mac address gateway pada variabel `real_mac` dengan source mac address pada variabel `response_mac`. Jika sama, maka tidak terjadi aktivitas netcut pada jaringan user. Sebaliknya jika tidak sama, maka dapat dipastikan telah terjadi aktivitas Netcut pada jaringan user, kemudian program akan mengirimkan notifikasi ke whatsapp user melalui fungsi `intruder()`
+
 ## Instalasi
+
+Untuk menggunakan program NetcutAlert, user perlu menginstall library terlebih dahulu, sesuai yang tertera pada section [Requirement](#Requirement) dan beberapa konfigruasi sebagai berikut.
+
+1. Scapy: https://scapy.readthedocs.io/en/latest/installation.html#installing-scapy-v2-x
+
+```
+$ pip install --pre scapy[basic]
+```
+
+2. Twilio: https://www.twilio.com/docs/libraries/python
+
+```
+pip install twilio
+```
+
+3. Jika user menggunakan virtual machine, pastikan wireless adapter telah terkoneksi terlebih dahulu untuk dapat terkoneksi ke jaringan wifi mengunakan `wlan0`. Lewati step ini jika linux terinstal langsung pada device user.
+4. Registrasi akun twilio, lalu join ke sandbox whatsapp twilio. Kemudian copy account sid beserta auth token user ke program NetcutALert. Lihat https://www.twilio.com/
+5. Karena fungsi notifikasi pada program NetcutAlert memerlukan akses internet, sedangkan tipe serangan Netcut itu sendiri menyebabkan terganggunya bandwidth atau koneksi pada jaringan user, maka dalam beberapa case menyebabkan program NetcutAlert ini mengalami error exception pada fungsi `intruder()` dan program pun berhenti. Namun, hal itu dapat diatasi dengan merestart program tersebut. Oleh karnanya maka perlu mengeksekusi program `run` terlebih dahulu dengan menjalankan perintah:
+
+```
+chmod +x run
+```
+
+Program `run` berisi perintah yang memungkinkan suatu program lain melakukan restart ketika terjadi error exception, Sehingga jika terjadi error exception pada program NetcutAlert, program dapat otomatis ter-restart dan dapat berjalan kembali.
+
+## Penggunaan
+
+Setelah memenuhi semua konfigurasi yang ada, User dapat menjalankan program NetcutAlert melalui perintah:
+
+```
+./run NetcutAlert.py
+```
+
+Jika terdeteksi aktivitas Netcut, maka program akan menampilkan tanda `[!] Detected` pada terminal, kemudian setelah program berhasil mengirimkan notifikasi pada whatsapp user, maka akan tampil tanda `[!] Alert sent!`. Program NetcutAlert merekam adanya aktivitas Netcut setiap 10 detik.
 
 ## Dokumentasi
 
