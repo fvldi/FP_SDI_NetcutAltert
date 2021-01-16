@@ -55,21 +55,27 @@ Cara kerja program ini yaitu diawali dengan mengambil default MAC address dari g
 
 Untuk menggunakan program NetcutAlert, user perlu menginstall library terlebih dahulu, sesuai yang tertera pada section [Requirement](#Requirement) dan beberapa konfigruasi sebagai berikut.
 
-1. Scapy: https://scapy.readthedocs.io/en/latest/installation.html#installing-scapy-v2-x
+1. Pastikan user menggunakan versi poython 3, jika belum maka disarankan update terlebih dahulu: https://linuxize.com/post/how-to-install-python-3-9-on-ubuntu-20-04/
+
+```
+sudo apt install python3.9
+```
+
+2. Scapy: https://scapy.readthedocs.io/en/latest/installation.html#installing-scapy-v2-x
 
 ```
 $ pip install --pre scapy[basic]
 ```
 
-2. Twilio: https://www.twilio.com/docs/libraries/python
+3. Twilio: https://www.twilio.com/docs/libraries/python
 
 ```
 pip install twilio
 ```
 
-3. Jika user menggunakan virtual machine, pastikan wireless adapter telah terkoneksi terlebih dahulu untuk dapat terkoneksi ke jaringan wifi mengunakan `wlan0`. Lewati step ini jika linux terinstal langsung pada device user.
-4. Registrasi akun twilio, lalu join ke sandbox whatsapp twilio. Kemudian copy account sid beserta auth token user ke program NetcutALert. Lihat https://www.twilio.com/
-5. Karena fungsi notifikasi pada program NetcutAlert memerlukan akses internet, sedangkan tipe serangan Netcut itu sendiri menyebabkan terganggunya bandwidth atau koneksi pada jaringan user, maka dalam beberapa case menyebabkan program NetcutAlert ini mengalami error exception pada fungsi `intruder()` dan program pun berhenti. Namun, hal itu dapat diatasi dengan merestart program tersebut. Oleh karnanya maka perlu mengeksekusi program `run` terlebih dahulu dengan menjalankan perintah:
+4. Jika user menggunakan virtual machine, pastikan wireless adapter telah terkoneksi terlebih dahulu untuk dapat terkoneksi ke jaringan wifi mengunakan `wlan0`. Lewati step ini jika linux terinstal langsung pada device user.
+5. Registrasi akun twilio, lalu join ke sandbox whatsapp twilio. Kemudian copy account sid beserta auth token user ke program NetcutALert. Lihat https://www.twilio.com/
+6. Karena fungsi notifikasi pada program NetcutAlert memerlukan akses internet, sedangkan tipe serangan Netcut itu sendiri menyebabkan terganggunya bandwidth atau koneksi pada jaringan user, maka dalam beberapa case menyebabkan program NetcutAlert ini mengalami error exception pada fungsi `intruder()` dan program pun berhenti. Namun, hal itu dapat diatasi dengan merestart program tersebut. Oleh karnanya maka perlu mengeksekusi program `run` terlebih dahulu dengan menjalankan perintah:
 
 ```
 chmod +x run
