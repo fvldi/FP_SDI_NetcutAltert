@@ -95,7 +95,7 @@ Jika terdeteksi aktivitas Netcut, maka program akan menampilkan tanda `[!] Detec
 
 ## Dokumentasi
 
-![NetcutAlert](images/Demo2.gif)
+![NetcutAlert](images/Demo.gif)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
